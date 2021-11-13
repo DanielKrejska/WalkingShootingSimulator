@@ -6,7 +6,7 @@ int main()
 {
 	cout << "Hello World" << endl;
 
-    sf::RenderWindow window(sf::VideoMode(720, 360), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(720, 360), "Hello World!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 
