@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "7a8d78a4-a90d-40db-9995-22577e2eb96f": {
+      "ProjectGuid": "7a8d78a4-a90d-40db-9995-22577e2eb96f",
+      "DisplayName": "WalkingShootingSimulator",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
