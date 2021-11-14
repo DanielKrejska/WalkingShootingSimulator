@@ -1,2 +1,7 @@
-﻿  Main.cpp
+﻿  Engine.cpp
+  draw.cpp
+  input.cpp
+  main.cpp
+  update.cpp
+  Generování kódu...
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe
