@@ -1,3 +1,4 @@
+#pragma warning(disable : 4244)
 #include "Engine.h"
 #include <sstream>
 
@@ -9,10 +10,16 @@ void Engine::update(Time deltaTime)
 	case GameState::MENU:
 		break;
 
+	case GameState::LEVEL_PICK:
+		break;
+
 	case GameState::EXIT:
 		window.close();
 		break;
 	}
+
+	// pozice HUD/UI
+	repositionHUD();
 
 	// aby se nám HUD neaktualizoval každej frame
 	// postaèí to jednou za sekundu

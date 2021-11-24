@@ -1,10 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <string>
+
 using namespace sf;
 
 // NA TESTOVÁNÍ
 #include <iostream>
+using namespace std;
 
 class Engine
 {
@@ -28,12 +31,16 @@ private:
 	Text fpsText;
 	Time sinceHUDUpdate;
 
+	Text menuText;
+
 	/*
 	* Funkce pro Vnitøní použití
 	*/
 	void input();
 	void update(Time deltaTime);
 	void draw();
+
+	void repositionHUD();
 
 	// tøída Engine má pouze jednu instanci
 	Engine();
