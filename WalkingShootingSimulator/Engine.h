@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include "LevelManager.h"
 
 using namespace sf;
 
@@ -30,8 +31,17 @@ private:
 	Font font;
 	Text fpsText;
 	Time sinceHUDUpdate;
-
+	Text levelPickText;
 	Text menuText;
+
+	Sprite bgSprite;
+	// uložení textur
+	Texture bgTexture;
+	Texture floorTexture;
+
+	// správa
+	Vector2f scaleToFullHD;
+	LevelManager levelManager;
 
 	/*
 	* Funkce pro Vnitøní použití

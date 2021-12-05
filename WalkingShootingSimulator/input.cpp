@@ -25,17 +25,34 @@ void Engine::input()
 		}
 	}
 
+	static bool key0onHold = false, key1onHold = false, key3onHold = false;
+
 	// èudly
 	switch (currentState)
 	{
 	case GameState::MENU:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
 		{
-			currentState = GameState::LEVEL_PICK;
+			if (!key1onHold) { currentState = GameState::LEVEL_PICK; }
+			key1onHold = true;
 		}
-		if (pressed(key::Num3) || pressed(key::Numpad3))
+		else key1onHold = false;
+
+		if (pressed(key::Num0) || pressed(key::Numpad0))
 		{
-			currentState = GameState::EXIT;
+			if (!key0onHold) currentState = GameState::EXIT;
 		}
+		else key0onHold = false;
+
+		break;
+
+	case GameState::LEVEL_PICK:
+		if (pressed(key::Num0) || pressed(key::Numpad0))
+		{
+			currentState = GameState::MENU;
+			key0onHold = true;
+		}
+		else key0onHold = false;
+		break;
 	}
 }

@@ -5,14 +5,19 @@ void Engine::draw()
 	window.clear();
 	// always draw
 	window.setView(view);
-	window.draw(fpsText);
 
 	switch (currentState)
 	{
 	case GameState::MENU:
+		window.draw(bgSprite);
 		window.draw(menuText);
+		break;
+	case GameState::LEVEL_PICK:
+		window.draw(bgSprite);
+		window.draw(levelPickText);
 		break;
 	}
 
+	window.draw(fpsText);
 	window.display();
 }
