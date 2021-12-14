@@ -1,5 +1,4 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "LevelManager.h"
@@ -50,7 +49,9 @@ private:
 	void update(Time deltaTime);
 	void draw();
 
-	void repositionHUD();
+	void viewSet();
+	void hudResizeUpdate();
+	void hudPositionUpdate();
 
 	// tøída Engine má pouze jednu instanci
 	Engine();

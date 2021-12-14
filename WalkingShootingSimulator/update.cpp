@@ -18,8 +18,7 @@ void Engine::update(Time deltaTime)
 		break;
 	}
 
-	// pozice HUD/UI
-	repositionHUD();
+	hudPositionUpdate();
 
 	// aby se nám HUD neaktualizoval každej frame
 	// postaèí to jednou za sekundu

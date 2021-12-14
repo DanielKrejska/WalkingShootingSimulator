@@ -20,12 +20,11 @@ void Engine::input()
 		}
 		else if (event.type == Event::Resized)
 		{
-			view.setSize(window.getSize().x, window.getSize().y);
-			repositionHUD();
+			hudResizeUpdate();
 		}
 	}
 
-	static bool key0onHold = false, key1onHold = false, key3onHold = false;
+	static bool keyOnHold[9] = { false };
 
 	// èudly
 	switch (currentState)
@@ -33,16 +32,16 @@ void Engine::input()
 	case GameState::MENU:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
 		{
-			if (!key1onHold) { currentState = GameState::LEVEL_PICK; }
-			key1onHold = true;
+			if (!keyOnHold[1]) { currentState = GameState::LEVEL_PICK; }
+			keyOnHold[1] = true;
 		}
-		else key1onHold = false;
+		else keyOnHold[1] = false;
 
 		if (pressed(key::Num0) || pressed(key::Numpad0))
 		{
-			if (!key0onHold) currentState = GameState::EXIT;
+			if (!keyOnHold[0]) currentState = GameState::EXIT;
 		}
-		else key0onHold = false;
+		else keyOnHold[0] = false;
 
 		break;
 
@@ -50,9 +49,22 @@ void Engine::input()
 		if (pressed(key::Num0) || pressed(key::Numpad0))
 		{
 			currentState = GameState::MENU;
-			key0onHold = true;
+			keyOnHold[0] = true;
 		}
-		else key0onHold = false;
+		else keyOnHold[0] = false;
+
+		int holdIndex = 1;
+		for (int i = key::Num1; i < key::Num9 + 1; i++)
+		{
+			if (pressed(key(i)) || pressed(key(i + 49)))
+			{
+				if (!keyOnHold[holdIndex++])
+				{
+					currentState = GameState::PLAYING;
+				}
+			}
+		}
+		
 		break;
 	}
 }
