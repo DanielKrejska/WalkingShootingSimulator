@@ -13,6 +13,9 @@ void Engine::update(Time deltaTime)
 	case GameState::LEVEL_PICK:
 		break;
 
+	case GameState::PLAYING:
+		break;
+
 	case GameState::EXIT:
 		window.close();
 		break;

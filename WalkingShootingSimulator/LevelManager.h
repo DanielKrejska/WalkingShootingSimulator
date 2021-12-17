@@ -28,8 +28,9 @@ public:
 	LevelManager();
 
 	static const int TILE_SIZE = 50;
+	static const int MAX_MAP_NUM = 9;
 
-	void loadMap(int levelIndex);
+	bool loadMap(int mapIndex);
 
 	const VertexArray* getVertexMap();
 	const string& getMenuString();

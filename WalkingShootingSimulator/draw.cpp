@@ -16,6 +16,8 @@ void Engine::draw()
 		window.draw(bgSprite);
 		window.draw(levelPickText);
 		break;
+	case GameState::PLAYING:
+		window.draw(*levelManager.getVertexMap(), &floorTexture);
 	}
 
 	window.draw(fpsText);

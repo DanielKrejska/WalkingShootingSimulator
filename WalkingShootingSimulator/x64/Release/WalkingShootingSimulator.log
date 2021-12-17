@@ -1,6 +1,12 @@
-﻿  Main.cpp
+﻿  draw.cpp
+  Engine.cpp
+  input.cpp
+  LevelManager.cpp
+  main.cpp
+  loadMapFuncs.cpp
+  update.cpp
   Vytváří se kód.
-  Previous IPDB not found, fall back to full compilation.
-  All 14 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Previous IPDB was built with incompatible compiler, fall back to full compilation.
+  All 606 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Vytváření kódu se dokončilo.
-  WalkingShootingSimulator.vcxproj -> D:\IT\codes\CPP_pokusy\WalkingShootingSimulator\x64\Release\WalkingShootingSimulator.exe
+  WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Release\WalkingShootingSimulator.exe

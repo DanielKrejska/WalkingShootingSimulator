@@ -1,6 +1,7 @@
 #pragma warning(disable : 4244)
 #pragma warning(disable : 26812)
 #include "Engine.h"
+#include <cassert>
 
 typedef Keyboard::Key key;
 
@@ -24,7 +25,7 @@ void Engine::input()
 		}
 	}
 
-	static bool keyOnHold[9] = { false };
+	static bool keyOnHold[10] = { false };
 
 	// èudly
 	switch (currentState)
@@ -54,17 +55,22 @@ void Engine::input()
 		else keyOnHold[0] = false;
 
 		int holdIndex = 1;
-		for (int i = key::Num1; i < key::Num9 + 1; i++)
+		for (int i = key::Num1; i <= key::Num9; i++)
 		{
 			if (pressed(key(i)) || pressed(key(i + 49)))
 			{
-				if (!keyOnHold[holdIndex++])
+				if (!keyOnHold[holdIndex])
 				{
-					currentState = GameState::PLAYING;
+					if (levelManager.loadMap(holdIndex-1))
+						currentState = GameState::PLAYING;
 				}
 			}
+			else
+			{
+				keyOnHold[holdIndex] = false;
+			}
+			holdIndex++;
 		}
-		
 		break;
 	}
 }

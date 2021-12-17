@@ -3,6 +3,7 @@
 #include <filesystem>
 using std::filesystem::directory_iterator;
 
+
 LevelManager::LevelManager()
 {
 	mapsNum = 0;
@@ -13,7 +14,10 @@ LevelManager::LevelManager()
 		string stringFilePath = filePath.string();
 		mapNames.push_back(stringFilePath);
 		menuString += to_string(++mapsNum) + ") " + stringFilePath + '\n';
+		if (mapsNum == MAX_MAP_NUM) break;
 	}
+	for (int i = mapsNum + 1; i < MAX_MAP_NUM + 1; i++)
+		menuString += to_string(i) + ") [SLOT EMPTY]\n";
 	menuString += "0) exit";
 }
 
@@ -35,10 +39,12 @@ void LevelManager::deleteCurrentMap()
 	}
 }
 
-void LevelManager::loadMap(int mapIndex)
+bool LevelManager::loadMap(int mapIndex)
 {
+	if (mapIndex >= mapsNum) return false;
 	technicalInit(mapIndex);
 	graphicalInit();
+	return true;
 }
 
 const VertexArray* LevelManager::getVertexMap()
