@@ -1,6 +1,6 @@
 #pragma warning(disable : 4244)
 #include "Engine.h"
-#include <cassert>
+#include "TextureHolder.h"
 
 Engine::Engine()
 {
@@ -21,11 +21,15 @@ Engine::Engine()
 	menuText.setCharacterSize(75);
 	menuText.setFillColor(Color::Green);
 	menuText.setString("1) play\n0) exit");
-	floorTexture.loadFromFile("graphics/background_sheet.png");
-	bgTexture.loadFromFile("graphics/bg.jpg");
+	floorTexture = TextureHolder::getTexture("graphics/background_sheet.png");
+	bgTexture = TextureHolder::getTexture("graphics/bg.jpg");
 	bgSprite.setTexture(bgTexture);
 	// aù objekty skoËÌ na svoje mÌsto
 	hudResizeUpdate();
+}
+
+Engine::~Engine()
+{
 }
 
 Engine& Engine::getEngine()

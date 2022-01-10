@@ -7,12 +7,6 @@ void Engine::update(Time deltaTime)
 	// hlavní funkènost main loopy
 	switch (currentState)
 	{
-	case GameState::MENU:
-		break;
-
-	case GameState::LEVEL_PICK:
-		break;
-
 	case GameState::PLAYING:
 		break;
 

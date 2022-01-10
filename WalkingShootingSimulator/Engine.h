@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "LevelManager.h"
+#include "Soldier.h"
 
 using namespace sf;
 
@@ -56,9 +57,12 @@ private:
 	// tøída Engine má pouze jednu instanci
 	Engine();
 
+	Soldier player;
+
 public:
 
 	void run();
 
 	static Engine& getEngine();
+	~Engine();
 };

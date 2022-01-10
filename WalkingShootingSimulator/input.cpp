@@ -26,10 +26,37 @@ void Engine::input()
 	}
 
 	static bool keyOnHold[10] = { false };
+	static bool escOnHold = false;
 
 	// èudly
 	switch (currentState)
 	{
+	case GameState::PLAYING:
+		if (pressed(key::Escape) && !escOnHold)
+		{
+			currentState = GameState::PAUSE;
+			escOnHold = true;
+		}
+		else
+		{
+			escOnHold = false;
+		}
+		break;
+	case GameState::PAUSE:
+		if (pressed(key::Num1) || pressed(key::Numpad1))
+		{
+			if (!keyOnHold[1]) { currentState = GameState::PLAYING; }
+			keyOnHold[1] = true;
+		}
+		else keyOnHold[1] = false;
+
+		if (pressed(key::Num0) || pressed(key::Numpad0))
+		{
+			if (!keyOnHold[0]) currentState = GameState::MENU;
+			keyOnHold[0] = true;
+		}
+		else keyOnHold[0] = false;
+		break;
 	case GameState::MENU:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
 		{
@@ -61,7 +88,7 @@ void Engine::input()
 			{
 				if (!keyOnHold[holdIndex])
 				{
-					if (levelManager.loadMap(holdIndex-1))
+					if (levelManager.loadMap(holdIndex - 1))
 						currentState = GameState::PLAYING;
 				}
 			}

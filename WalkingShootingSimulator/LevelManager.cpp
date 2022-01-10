@@ -36,12 +36,15 @@ void LevelManager::deleteCurrentMap()
 		}
 		delete[] arrayMap;
 		delete pVertexMap;
+		arrayMap = nullptr;
+		mapSize.x = mapSize.y = 0;
 	}
 }
 
 bool LevelManager::loadMap(int mapIndex)
 {
 	if (mapIndex >= mapsNum) return false;
+	this->deleteCurrentMap();
 	technicalInit(mapIndex);
 	graphicalInit();
 	return true;

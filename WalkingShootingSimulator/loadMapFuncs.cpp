@@ -1,5 +1,6 @@
 #pragma warning(disable : 6386)
 #pragma warning(disable : 4267)
+#pragma warning(disable : 26451)
 #include "LevelManager.h"
 #include <fstream>
 using std::ifstream;

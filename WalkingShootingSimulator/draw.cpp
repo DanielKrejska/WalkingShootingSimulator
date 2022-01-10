@@ -18,6 +18,11 @@ void Engine::draw()
 		break;
 	case GameState::PLAYING:
 		window.draw(*levelManager.getVertexMap(), &floorTexture);
+		break;
+	case GameState::PAUSE:
+		window.draw(*levelManager.getVertexMap(), &floorTexture);
+		window.draw(menuText);
+		break;
 	}
 
 	window.draw(fpsText);
