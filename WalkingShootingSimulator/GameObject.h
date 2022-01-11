@@ -2,11 +2,15 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-class GameObject
+class GameObject : public Drawable
 {
+private:
+	virtual void draw(RenderTarget& target, RenderStates states) const;
+
 protected:
 	Vector2f position;
 	Sprite sprite;
+
 public:
 	GameObject(int x = 0, int y = 0);
 
@@ -16,4 +20,5 @@ public:
 	const Sprite& getSprite();
 
 	Vector2f getPosition();
+	Vector2f getCenter();
 };

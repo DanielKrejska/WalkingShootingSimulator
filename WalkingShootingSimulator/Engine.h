@@ -1,10 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <string>
 #include "LevelManager.h"
 #include "Soldier.h"
 
-using namespace sf;
 
 // NA TESTOVÁNÍ
 #include <iostream>
@@ -43,6 +41,9 @@ private:
 	Vector2f scaleToFullHD;
 	LevelManager levelManager;
 
+	// herní objekty
+	Soldier player;
+
 	/*
 	* Funkce pro Vnitøní použití
 	*/
@@ -56,8 +57,6 @@ private:
 
 	// tøída Engine má pouze jednu instanci
 	Engine();
-
-	Soldier player;
 
 public:
 

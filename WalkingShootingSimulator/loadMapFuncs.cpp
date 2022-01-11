@@ -1,8 +1,10 @@
 #pragma warning(disable : 6386)
 #pragma warning(disable : 4267)
 #pragma warning(disable : 26451)
+#pragma warning(disable : 6385)
 #include "LevelManager.h"
 #include <fstream>
+#include <iostream>
 using std::ifstream;
 using std::string;
 
@@ -24,10 +26,10 @@ void LevelManager::technicalInit(int mapIndex)
 
 	deleteCurrentMap();
 	// vytvoøení 2d pole
-	arrayMap = new int* [mapSize.y];
+	arrayMap = new char* [mapSize.y];
 	for (int i = 0; i < mapSize.y; i++)
 	{
-		arrayMap[i] = new int[mapSize.x];
+		arrayMap[i] = new char[mapSize.x];
 	}
 
 	rowString.clear();
@@ -39,7 +41,7 @@ void LevelManager::technicalInit(int mapIndex)
 		for (int x = 0; x < rowString.length(); x++)
 		{
 			const char val = rowString[x];
-			arrayMap[y][x] = atoi(&val);
+			arrayMap[y][x] = val;
 		}
 		y++;
 	}
@@ -47,7 +49,7 @@ void LevelManager::technicalInit(int mapIndex)
 }
 
 
-void LevelManager::graphicalInit()
+void LevelManager::graphicalInit(Soldier& player)
 {
 	pVertexMap = new VertexArray();
 	pVertexMap->setPrimitiveType(Quads);
@@ -71,8 +73,11 @@ void LevelManager::graphicalInit()
 			va[currentVertex + 3].position = Vector2f((w * TILE_SIZE),
 				(h * TILE_SIZE) + TILE_SIZE);
 
+			/*
+			* GRAFIKA MAPY
+			*/
 			// ètvercùm v mapì pøiøadíme ètverec v textuøe
-			if (arrayMap[h][w] == 1)
+			if (arrayMap[h][w] == '1')
 			{
 				va[currentVertex + 0].texCoords = Vector2f(0,
 					0 + FLOOR_TYPES * TILE_SIZE);
@@ -100,6 +105,18 @@ void LevelManager::graphicalInit()
 					TILE_SIZE + verticalOffset);
 			}
 			currentVertex += 4;
+
+			/*
+			* POZICE OBJEKTÙ
+			*/
+			wallPositions.push_back(Vector2f(w, h));
+			Vector2f objectPosition(w * TILE_SIZE - (TILE_SIZE / 2),
+				h * TILE_SIZE - (TILE_SIZE / 2));
+			if (arrayMap[h][w] == 'P')
+			{
+				player.setPosition(objectPosition);
+				std::cout << objectPosition.x << "   " << objectPosition.y << std::endl;
+			}
 		}
 	}
 }

@@ -8,6 +8,8 @@ void Engine::update(Time deltaTime)
 	switch (currentState)
 	{
 	case GameState::PLAYING:
+
+		player.executeMovement(deltaTime);
 		break;
 
 	case GameState::EXIT:

@@ -37,16 +37,17 @@ void LevelManager::deleteCurrentMap()
 		delete[] arrayMap;
 		delete pVertexMap;
 		arrayMap = nullptr;
+		wallPositions.clear();
 		mapSize.x = mapSize.y = 0;
 	}
 }
 
-bool LevelManager::loadMap(int mapIndex)
+bool LevelManager::loadMap(int mapIndex, Soldier& player)
 {
 	if (mapIndex >= mapsNum) return false;
 	this->deleteCurrentMap();
 	technicalInit(mapIndex);
-	graphicalInit();
+	graphicalInit(player);
 	return true;
 }
 
@@ -63,4 +64,9 @@ const string& LevelManager::getMenuString()
 int LevelManager::getMapsNum()
 {
 	return mapsNum;
+}
+
+const vector<Vector2f>& LevelManager::getWalls()
+{
+	return wallPositions;
 }

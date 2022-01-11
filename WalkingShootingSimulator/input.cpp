@@ -88,7 +88,7 @@ void Engine::input()
 			{
 				if (!keyOnHold[holdIndex])
 				{
-					if (levelManager.loadMap(holdIndex - 1))
+					if (levelManager.loadMap(holdIndex - 1, player))
 						currentState = GameState::PLAYING;
 				}
 			}
