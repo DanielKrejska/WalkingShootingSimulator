@@ -15,8 +15,7 @@ void Engine::update(Time deltaTime)
 		break;
 	}
 
-	hudPositionUpdate();
-
+	viewSet();
 	// aby se nám HUD neaktualizoval každej frame
 	// postaèí to jednou za sekundu
 	sinceHUDUpdate += deltaTime;
