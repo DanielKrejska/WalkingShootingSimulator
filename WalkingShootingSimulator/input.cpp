@@ -36,11 +36,17 @@ void Engine::input()
 		{
 			currentState = GameState::PAUSE;
 			escOnHold = true;
+			menuText.setString("1) resume\n0) menu");
 		}
 		else
 		{
 			escOnHold = false;
 		}
+		// POHYB HR¡»E
+		if (pressed(key::W)) player.moveUp();
+		if (pressed(key::S)) player.moveDown();
+		if (pressed(key::A)) player.moveLeft();
+		if (pressed(key::D)) player.moveRight();
 		break;
 	case GameState::PAUSE:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
@@ -54,6 +60,7 @@ void Engine::input()
 		{
 			if (!keyOnHold[0]) currentState = GameState::MENU;
 			keyOnHold[0] = true;
+			menuText.setString("1) play\n0) exit");
 		}
 		else keyOnHold[0] = false;
 		break;

@@ -12,13 +12,12 @@ protected:
 	Sprite sprite;
 
 public:
-	GameObject(int x = 0, int y = 0);
+	GameObject(float x = 0, float y = 0);
 
-	void setPosition(int x, int y);
+	void setPosition(float x, float y);
 	void setPosition(Vector2f newPosition);
 
 	const Sprite& getSprite();
 
 	Vector2f getPosition();
-	Vector2f getCenter();
 };

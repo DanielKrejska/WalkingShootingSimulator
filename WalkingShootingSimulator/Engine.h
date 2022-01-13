@@ -51,6 +51,9 @@ private:
 	void update(Time deltaTime);
 	void draw();
 
+	// kolize objektù
+	void wallCollisions(Vector2f& playerLastPosition);
+
 	void viewSet();
 	void hudResizeUpdate();
 	void hudPositionUpdate();

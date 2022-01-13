@@ -6,7 +6,7 @@ Engine::Engine()
 {
 	window.create(VideoMode(1280, 720), "Walking Shooting Simulator");
 	view.setSize(window.getSize().x, window.getSize().y);
-	window.setFramerateLimit(90);
+	window.setFramerateLimit(100);
 	currentState = GameState::MENU;
 	font.loadFromFile("fonts/Roboto.ttf");
 	fpsText.setFont(font);

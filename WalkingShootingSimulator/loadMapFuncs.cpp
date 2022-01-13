@@ -4,7 +4,6 @@
 #pragma warning(disable : 6385)
 #include "LevelManager.h"
 #include <fstream>
-#include <iostream>
 using std::ifstream;
 using std::string;
 
@@ -79,6 +78,7 @@ void LevelManager::graphicalInit(Soldier& player)
 			// ètvercùm v mapì pøiøadíme ètverec v textuøe
 			if (arrayMap[h][w] == '1')
 			{
+				wallPositions.push_back(Vector2f(w * TILE_SIZE, h * TILE_SIZE));
 				va[currentVertex + 0].texCoords = Vector2f(0,
 					0 + FLOOR_TYPES * TILE_SIZE);
 				va[currentVertex + 1].texCoords = Vector2f(TILE_SIZE,
@@ -109,13 +109,11 @@ void LevelManager::graphicalInit(Soldier& player)
 			/*
 			* POZICE OBJEKTÙ
 			*/
-			wallPositions.push_back(Vector2f(w, h));
-			Vector2f objectPosition(w * TILE_SIZE - (TILE_SIZE / 2),
-				h * TILE_SIZE - (TILE_SIZE / 2));
+			Vector2f objectPosition(w * TILE_SIZE + (TILE_SIZE / 2),
+				h * TILE_SIZE + (TILE_SIZE / 2));
 			if (arrayMap[h][w] == 'P')
 			{
 				player.setPosition(objectPosition);
-				std::cout << objectPosition.x << "   " << objectPosition.y << std::endl;
 			}
 		}
 	}

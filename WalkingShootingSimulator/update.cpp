@@ -8,9 +8,12 @@ void Engine::update(Time deltaTime)
 	switch (currentState)
 	{
 	case GameState::PLAYING:
-
-		player.executeMovement(deltaTime);
+		{
+		Vector2f nextPosition(player.calculateNextPosition(deltaTime));
+		this->wallCollisions(nextPosition);
+		player.executeMovement(nextPosition);
 		break;
+		}
 
 	case GameState::EXIT:
 		window.close();
