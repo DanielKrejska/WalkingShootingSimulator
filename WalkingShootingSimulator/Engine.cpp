@@ -86,7 +86,7 @@ void Engine::viewSet()
 {
 	if (currentState == GameState::PLAYING)
 		// tady se flákne pozice postavy
-		view.setCenter(player.getPosition());
+		view.setCenter(player.getCenter());
 	else
 		view.setCenter(window.getSize().x / 2, window.getSize().y / 2);
 

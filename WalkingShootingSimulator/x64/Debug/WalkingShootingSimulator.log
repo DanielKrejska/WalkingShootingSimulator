@@ -1,2 +1,3 @@
-﻿  collisions.cpp
+﻿  LevelManager.cpp
+D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\LevelManager.cpp(16,41): warning C4267: inicializování: Převod z: size_t na: int, může dojít ke ztrátě dat.
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe

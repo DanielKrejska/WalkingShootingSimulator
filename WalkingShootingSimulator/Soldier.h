@@ -52,6 +52,7 @@ public:
 	float getVertical();
 	float getHorizontal();
 	const RectangleShape& getRect() const;
+	Vector2f getCenter() const;
 
 	Soldier();
 	~Soldier();

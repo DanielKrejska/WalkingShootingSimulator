@@ -72,6 +72,13 @@ Vector2f Soldier::getOldPosition()
 	return oldPosition;
 }
 
+Vector2f Soldier::getCenter() const
+{
+	FloatRect tempRect = sprite.getGlobalBounds();
+	return Vector2f(position.x + (tempRect.width / 2),
+		position.y + (tempRect.height / 2));
+}
+
 /*
 * POHYB
 */

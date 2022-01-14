@@ -13,7 +13,9 @@ LevelManager::LevelManager()
 		auto filePath = file.path();
 		string stringFilePath = filePath.string();
 		mapNames.push_back(stringFilePath);
-		menuString += to_string(++mapsNum) + ") " + stringFilePath + '\n';
+		int strlen = stringFilePath.size() - 9;
+		menuString += to_string(++mapsNum) + ") " +
+			stringFilePath.substr(5, strlen) + '\n';
 		if (mapsNum == MAX_MAP_NUM) break;
 	}
 	for (int i = mapsNum + 1; i < MAX_MAP_NUM + 1; i++)
