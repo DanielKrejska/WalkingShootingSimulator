@@ -2,6 +2,7 @@
 #include <string>
 #include "LevelManager.h"
 #include "Soldier.h"
+#define PI 3.14159265
 
 
 // NA TESTOVÁNÍ
@@ -41,6 +42,7 @@ private:
 	Vector2f scaleToFullHD;
 	LevelManager levelManager;
 
+	void rotatePlayer(const Vector2f& mousePosition);
 	// herní objekty
 	Soldier player;
 

@@ -2,7 +2,10 @@
 #include "Soldier.h"
 #include "TextureHolder.h"
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)
+#define RECT_SCALE 0.48f
 
+#include <iostream>
+using namespace std;
 
 Soldier::Soldier() : GameObject(0, 0)
 {
@@ -14,10 +17,11 @@ Soldier::Soldier() : GameObject(0, 0)
 	sprite.setTextureRect(IntRect(0, 0, 5060/20, 216));
 	sprite.setScale(SOLDIER_SCALE);
 	auto tempRect = sprite.getGlobalBounds();
-	rect.setSize(Vector2f(tempRect.width, tempRect.height));
+	rect.setSize(Vector2f(tempRect.width*RECT_SCALE, tempRect.height*RECT_SCALE));
 	rect.setOutlineThickness(2);
 	rect.setOutlineColor(Color::Yellow);
 	rect.setFillColor(Color::Transparent);
+	this->sprite.setOrigin(tempRect.width * 0.8, tempRect.height * 0.9);
 }
 
 Soldier::~Soldier()
@@ -72,11 +76,26 @@ Vector2f Soldier::getOldPosition()
 	return oldPosition;
 }
 
-Vector2f Soldier::getCenter() const
+Vector2f Soldier::getCenter()
 {
-	FloatRect tempRect = sprite.getGlobalBounds();
-	return Vector2f(position.x + (tempRect.width / 2),
-		position.y + (tempRect.height / 2));
+	auto rp = rect.getGlobalBounds();
+	return Vector2f(rp.left + (rp.width / 2),
+		rp.top + (rp.height / 2));
+}
+
+void Soldier::setSpritePosition()
+{
+	sprite.setPosition(this->getCenter());
+}
+
+void Soldier::setRectPosition()
+{
+	rect.setPosition(position);
+}
+
+void Soldier::rotate(float angle)
+{
+	sprite.setRotation(angle);
 }
 
 /*
@@ -125,7 +144,6 @@ void Soldier::executeMovement(Vector2f nextPosition)
 	oldPosition = position;
 	position = nextPosition;
 	horizontalMove = verticalMove = 0;
-	sprite.setPosition(position);
-	auto tempRect = sprite.getGlobalBounds();
-	rect.setPosition(tempRect.left, tempRect.top);
+	this->setRectPosition();
+	this->setSpritePosition();
 }

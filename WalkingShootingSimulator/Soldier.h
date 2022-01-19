@@ -31,12 +31,16 @@ private:
 	float horizontalMove;
 	Vector2f oldPosition;
 
+	void setSpritePosition();
+	void setRectPosition();
+
 public:
 	static const int MOVE_SPEED = 135;
 
 	void setPosition(float x, float y);
 	void setPosition(Vector2f newPosition);
 
+	void rotate(float angle);
 	void moveUp();
 	void moveDown();
 	void moveLeft();
@@ -52,7 +56,7 @@ public:
 	float getVertical();
 	float getHorizontal();
 	const RectangleShape& getRect() const;
-	Vector2f getCenter() const;
+	Vector2f getCenter();
 
 	Soldier();
 	~Soldier();

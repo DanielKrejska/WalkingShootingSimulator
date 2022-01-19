@@ -1,3 +1,4 @@
-﻿  LevelManager.cpp
-D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\LevelManager.cpp(16,41): warning C4267: inicializování: Převod z: size_t na: int, může dojít ke ztrátě dat.
+﻿  Soldier.cpp
+D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(24,63): warning C4244: argument: double se převádí na float; může dojít ke ztrátě dat.
+D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(24,40): warning C4244: argument: double se převádí na float; může dojít ke ztrátě dat.
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe

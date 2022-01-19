@@ -12,6 +12,9 @@ void Engine::update(Time deltaTime)
 		Vector2f nextPosition(player.calculateNextPosition(deltaTime));
 		this->wallCollisions(nextPosition);
 		player.executeMovement(nextPosition);
+		Vector2i mousePosition = Mouse::getPosition(window);
+		Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
+		this->rotatePlayer(mouseWorldPos);
 		break;
 		}
 

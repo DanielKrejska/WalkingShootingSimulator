@@ -92,3 +92,12 @@ void Engine::viewSet()
 
 	hudPositionUpdate();
 }
+
+void Engine::rotatePlayer(const Vector2f& mousePosition)
+{
+	float dtX = mousePosition.x - player.getCenter().x;
+	float dtY = mousePosition.y - player.getCenter().y;
+	float rotation = atan2(dtY, dtX);
+	rotation = rotation * (180.f / PI);
+	player.rotate(rotation);
+}
