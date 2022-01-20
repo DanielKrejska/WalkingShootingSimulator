@@ -1,12 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
+#include "ANimation.h"
 #define SLANT_MOVE_KOEF 0.70710678f
+#define SHOOT_DURATION 0.15f
 using namespace sf;
 
 class Soldier : public GameObject
 {
-private:
+public:
 	enum PlayerState {
 		IDLE = 0,
 		MOVE,
@@ -20,12 +22,21 @@ private:
 		RIFLE
 	};
 
+private:
+	static const int RELOAD_DURATION = 2;
+	Time reloadingTime;
+	Time shootTime;
+
+	bool canShoot;
+
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 
 	PlayerState currentState;
 	WeaponTypes equipedWeapon;
 	RectangleShape rect;
 	Sprite sprite;
+
+	Animation anims[RIFLE+1][RELOAD+1];
 
 	float verticalMove;
 	float horizontalMove;
@@ -37,8 +48,13 @@ private:
 public:
 	static const int MOVE_SPEED = 135;
 
+	void reset();
+	void animationsReset();
+
 	void setPosition(float x, float y);
 	void setPosition(Vector2f newPosition);
+
+	void reload();
 
 	void rotate(float angle);
 	void moveUp();
@@ -51,12 +67,17 @@ public:
 	Vector2f getOldPosition();
 	void executeMovement(Vector2f nextPosition);
 
+	void animationUpdate(Time dtTime);
+	void stateUpdate(Time dtTime);
+
+	void setWeapon(WeaponTypes newWeapon);
 	void setVertical(float value);
 	void setHorizontal(float value);
 	float getVertical();
 	float getHorizontal();
 	const RectangleShape& getRect() const;
 	Vector2f getCenter();
+	int getState();
 
 	Soldier();
 	~Soldier();

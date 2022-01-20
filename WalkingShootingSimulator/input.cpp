@@ -47,7 +47,21 @@ void Engine::input()
 		if (pressed(key::S)) player.moveDown();
 		if (pressed(key::A)) player.moveLeft();
 		if (pressed(key::D)) player.moveRight();
+
+		if (pressed(key::R) && player.getState() != Soldier::PlayerState::RELOAD)
+		{
+			player.reload();
+		}
 		break;
+
+		// pøepínání zbraní
+		/*
+		if (pressed(key::Num1))
+			player.setWeapon(Soldier::WeaponTypes::HANDGUN);
+		if (pressed(key::Num2))
+			player.setWeapon(Soldier::WeaponTypes::RIFLE);
+		*/
+
 	case GameState::PAUSE:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
 		{
@@ -61,6 +75,7 @@ void Engine::input()
 			if (!keyOnHold[0]) currentState = GameState::MENU;
 			keyOnHold[0] = true;
 			menuText.setString("1) play\n0) exit");
+			player.reset();
 		}
 		else keyOnHold[0] = false;
 		break;

@@ -1,4 +1,4 @@
 ﻿  Soldier.cpp
-D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(24,63): warning C4244: argument: double se převádí na float; může dojít ke ztrátě dat.
-D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(24,40): warning C4244: argument: double se převádí na float; může dojít ke ztrátě dat.
+D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(23,63): warning C4244: argument: double se převádí na float; může dojít ke ztrátě dat.
+D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(23,40): warning C4244: argument: double se převádí na float; může dojít ke ztrátě dat.
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe

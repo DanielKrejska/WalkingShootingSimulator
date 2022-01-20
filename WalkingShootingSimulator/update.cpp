@@ -15,6 +15,8 @@ void Engine::update(Time deltaTime)
 		Vector2i mousePosition = Mouse::getPosition(window);
 		Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
 		this->rotatePlayer(mouseWorldPos);
+		player.animationUpdate(deltaTime);
+		player.stateUpdate(deltaTime);
 		break;
 		}
 
