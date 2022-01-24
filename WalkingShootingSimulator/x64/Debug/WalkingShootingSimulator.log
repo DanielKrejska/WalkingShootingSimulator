@@ -1,10 +1,2 @@
-﻿  Engine.cpp
-  LevelManager.cpp
-  Soldier.cpp
-  draw.cpp
-  input.cpp
-  loadMapFuncs.cpp
-  main.cpp
-  update.cpp
-  Generování kódu...
+﻿  Soldier.cpp
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe

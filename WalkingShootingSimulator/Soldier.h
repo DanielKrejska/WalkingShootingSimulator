@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "GameObject.h"
 #include "Animation.h"
 #define SLANT_MOVE_KOEF 0.70710678f
@@ -55,6 +56,7 @@ public:
 	void setPosition(Vector2f newPosition);
 
 	void reload();
+	void shoot();
 
 	void rotate(float angle);
 	void moveUp();
@@ -78,6 +80,7 @@ public:
 	const RectangleShape& getRect() const;
 	Vector2f getCenter();
 	int getState();
+	bool shootAvailable();
 
 	Soldier();
 	~Soldier();

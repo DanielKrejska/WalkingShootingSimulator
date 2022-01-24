@@ -5,6 +5,9 @@
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)
 #define RECT_SCALE 0.48f
 
+#include <iostream>
+using namespace std;
+
 Soldier::Soldier() : GameObject(0, 0)
 {
 	this->reset();
@@ -61,6 +64,7 @@ void Soldier::draw(RenderTarget& target, RenderStates states) const
 
 void Soldier::setWeapon(WeaponTypes newWeapon)
 {
+	if (currentState == PlayerState::SHOOT) return;
 	equipedWeapon = newWeapon;
 	currentState = PlayerState::IDLE;
 }
@@ -134,6 +138,19 @@ int Soldier::getState()
 	return currentState;
 }
 
+bool Soldier::shootAvailable()
+{
+	return canShoot;
+}
+
+void Soldier::shoot()
+{
+	currentState = PlayerState::SHOOT;
+	shootTime = Time::Zero;
+	this->animationsReset();
+	canShoot = false;
+}
+
 void Soldier::reload()
 {
 	currentState = PlayerState::RELOAD;
@@ -204,6 +221,10 @@ void Soldier::stateUpdate(Time dtTime)
 	if (currentState == PlayerState::RELOAD)
 	{
 		reloadingTime += dtTime;
+	}
+	else if (currentState == PlayerState::SHOOT)
+	{
+		shootTime += dtTime;
 	}
 }
 

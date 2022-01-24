@@ -53,6 +53,13 @@ void Engine::input()
 			player.reload();
 		}
 
+		// støelba
+		if (Mouse::isButtonPressed(Mouse::Button::Left) 
+			&& player.getState() != Soldier::PlayerState::RELOAD && player.shootAvailable())
+		{
+			player.shoot();
+		}
+
 		// pøepínání zbraní
 		if (pressed(key::Num1))
 			player.setWeapon(Soldier::WeaponTypes::HANDGUN);
