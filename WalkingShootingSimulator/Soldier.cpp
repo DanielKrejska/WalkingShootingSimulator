@@ -1,11 +1,9 @@
 #pragma warning(disable : 26812)
+#pragma warning(disable : 4244)
 #include "Soldier.h"
 #include "TextureHolder.h"
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)
 #define RECT_SCALE 0.48f
-
-#include <iostream>
-using namespace std;
 
 Soldier::Soldier() : GameObject(0, 0)
 {
@@ -64,6 +62,7 @@ void Soldier::draw(RenderTarget& target, RenderStates states) const
 void Soldier::setWeapon(WeaponTypes newWeapon)
 {
 	equipedWeapon = newWeapon;
+	currentState = PlayerState::IDLE;
 }
 
 void Soldier::setPosition(float x, float y)

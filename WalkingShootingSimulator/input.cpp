@@ -52,15 +52,13 @@ void Engine::input()
 		{
 			player.reload();
 		}
-		break;
 
 		// pøepínání zbraní
-		/*
 		if (pressed(key::Num1))
 			player.setWeapon(Soldier::WeaponTypes::HANDGUN);
 		if (pressed(key::Num2))
 			player.setWeapon(Soldier::WeaponTypes::RIFLE);
-		*/
+		break;
 
 	case GameState::PAUSE:
 		if (pressed(key::Num1) || pressed(key::Numpad1))

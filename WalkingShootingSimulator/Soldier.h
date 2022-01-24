@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "GameObject.h"
-#include "ANimation.h"
+#include "Animation.h"
 #define SLANT_MOVE_KOEF 0.70710678f
 #define SHOOT_DURATION 0.15f
+#define RELOAD_DURATION 2.f
 using namespace sf;
 
 class Soldier : public GameObject
@@ -23,7 +24,6 @@ public:
 	};
 
 private:
-	static const int RELOAD_DURATION = 2;
 	Time reloadingTime;
 	Time shootTime;
 

@@ -1,4 +1,5 @@
 #pragma warning(disable : 26495)
+#pragma warning(disable : 4267)
 #include "LevelManager.h"
 #include <filesystem>
 using std::filesystem::directory_iterator;
