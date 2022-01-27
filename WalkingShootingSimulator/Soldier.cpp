@@ -30,7 +30,6 @@ Soldier::Soldier() : GameObject(0, 0)
 	anims[RIFLE][MOVE].setup(20, 6260, 206, seconds(.8f));
 	anims[RIFLE][RELOAD].setup(20, 6440, 217, seconds(RELOAD_DURATION));
 	anims[RIFLE][SHOOT].setup(3, 1020, 206, seconds(SHOOT_DURATION));
-	canShoot = true;
 }
 
 Soldier::~Soldier()
@@ -40,6 +39,7 @@ Soldier::~Soldier()
 void Soldier::reset()
 {
 	currentState = PlayerState::IDLE;
+	canShoot = true;
 	equipedWeapon = WeaponTypes::HANDGUN;
 	shootTime = reloadingTime = Time::Zero;
 	this->animationsReset();
@@ -196,6 +196,7 @@ void Soldier::stateUpdate(Time dtTime)
 	if (reloadingTime.asSeconds() >= RELOAD_DURATION && currentState == PlayerState::RELOAD)
 	{
 		currentState = PlayerState::IDLE;
+		canShoot = true;
 		animationsReset();
 	}
 	else if (shootTime.asSeconds() >= SHOOT_DURATION && currentState == PlayerState::SHOOT)
