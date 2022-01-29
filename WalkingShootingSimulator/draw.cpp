@@ -19,6 +19,10 @@ void Engine::draw()
 	case GameState::PLAYING:
 		window.draw(*levelManager.getVertexMap(), &floorTexture);
 		window.draw(player);
+		for (Bullet b : bullets)
+		{
+			window.draw(b.getShape());
+		}
 		break;
 	case GameState::PAUSE:
 		window.draw(*levelManager.getVertexMap(), &floorTexture);

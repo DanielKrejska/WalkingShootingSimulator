@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+#include "Bullet.h"
 #include "LevelManager.h"
 #include "Soldier.h"
 #define PI 3.14159265
@@ -45,6 +47,7 @@ private:
 	void rotatePlayer(const Vector2f& mousePosition);
 	// herní objekty
 	Soldier player;
+	vector<Bullet> bullets;
 
 	/*
 	* Funkce pro Vnitøní použití

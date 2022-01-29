@@ -5,9 +5,12 @@ using namespace sf;
 class Bullet
 {
 private:
-	static const int SPEED = 500;
+	static const int SPEED = 2000;
 
-	RectangleShape bulletBody;
+	FloatRect bulletBody;
+	RectangleShape shape;
+
+	Vector2f position;
 
 	// horizontální a vertikální vzdálenost, kterou musí
 	// kulka cestovat každý frame
@@ -21,6 +24,6 @@ public:
 
 	void update(Time dtTime);
 
-	const FloatRect& getRect();
+	const FloatRect& getRect() const;
+	const RectangleShape& getShape() const;
 };
-

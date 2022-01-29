@@ -17,6 +17,8 @@ void Engine::update(Time deltaTime)
 		this->rotatePlayer(mouseWorldPos);
 		player.animationUpdate(deltaTime);
 		player.stateUpdate(deltaTime);
+		for (Bullet& b : bullets)
+			b.update(deltaTime);
 		break;
 		}
 

@@ -58,6 +58,9 @@ void Engine::input()
 			&& player.getState() != Soldier::PlayerState::RELOAD && player.shootAvailable())
 		{
 			player.shoot();
+			Vector2i mousePosition = Mouse::getPosition(window);
+			Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
+			bullets.push_back(Bullet(player.getCenter(), mouseWorldPos));
 		}
 
 		// pøepínání zbraní
@@ -81,6 +84,7 @@ void Engine::input()
 			keyOnHold[0] = true;
 			menuText.setString("1) play\n0) exit");
 			player.reset();
+			bullets.clear();
 		}
 		else keyOnHold[0] = false;
 		break;

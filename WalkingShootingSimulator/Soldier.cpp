@@ -66,6 +66,7 @@ void Soldier::setWeapon(WeaponTypes newWeapon)
 {
 	if (currentState == PlayerState::SHOOT) return;
 	equipedWeapon = newWeapon;
+	canShoot = true;
 	currentState = PlayerState::IDLE;
 }
 

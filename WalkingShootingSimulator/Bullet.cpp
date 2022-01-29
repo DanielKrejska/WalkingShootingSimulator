@@ -1,16 +1,27 @@
 #include "Bullet.h"
 
+#include <iostream>
+using namespace std;
+
 Bullet::Bullet(Vector2f start, Vector2f target)
 {
-	bulletBody.setPosition(start);
+	bulletBody.width = bulletBody.height = 2;
+	position = start;
 	targetPosition = target;
 
+	shape.setSize(Vector2f(2, 2));
+	shape.setOutlineThickness(3);
+	shape.setOutlineColor(Color::Red);
+
+	bulletBody.left = start.x;
+	bulletBody.top = start.y;
+
 	float gradient = (start.x - target.x) / (start.y - target.y);
-	gradient = gradient > 0 ? gradient : gradient * (-1);
+	gradient = gradient < 0 ? -gradient : gradient;
 	
 	float ratio = Bullet::SPEED / (1 + gradient);
-	frameTravel.x = ratio;
-	frameTravel.y = ratio * gradient;
+	frameTravel.x = ratio * gradient;
+	frameTravel.y = ratio ;
 	
 	if (target.x < start.x)
 	{
@@ -26,15 +37,22 @@ Bullet::~Bullet()
 {
 }
 
-const FloatRect& Bullet::getRect()
+const FloatRect& Bullet::getRect() const
 {
-	return bulletBody.getGlobalBounds();
+	return bulletBody;
+}
+
+const RectangleShape& Bullet::getShape() const
+{
+	return shape;
 }
 
 void Bullet::update(Time dtTime)
 {
-	Vector2f pos = bulletBody.getPosition();
-	pos.x += frameTravel.x * dtTime.asSeconds();
-	pos.y += frameTravel.y * dtTime.asSeconds();
-	bulletBody.setPosition(pos);
+	position.x += frameTravel.x * dtTime.asSeconds();
+	position.y += frameTravel.y * dtTime.asSeconds();
+
+	shape.setPosition(position);
+	bulletBody.left = position.x;
+	bulletBody.top = position.y;
 }

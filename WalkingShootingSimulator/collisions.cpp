@@ -1,6 +1,5 @@
 #include "Engine.h"
 
-
 void Engine::wallCollisions(Vector2f& playerNextPosition)
 {
 	const vector<Vector2f>& wallPositions = levelManager.getWalls();
@@ -26,6 +25,18 @@ void Engine::wallCollisions(Vector2f& playerNextPosition)
 			if (withNewY.intersects(twr))
 			{
 				playerNextPosition.y = player.getOldPosition().y;
+			}
+		}
+		
+		auto it = bullets.begin();
+
+		while (it != bullets.end())
+		{
+			if (it->getRect().intersects(twr)) {
+				it = bullets.erase(it);
+			}
+			else {
+				++it;
 			}
 		}
 	}
