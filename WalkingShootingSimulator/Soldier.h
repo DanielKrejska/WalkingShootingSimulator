@@ -30,6 +30,10 @@ private:
 
 	bool canShoot;
 
+	int currHandMag;
+	int currRifleMag;
+	int currShotMag;
+
 	virtual void draw(RenderTarget& target, RenderStates states) const;
 
 	PlayerState currentState;
@@ -46,8 +50,14 @@ private:
 	void setSpritePosition();
 	void setRectPosition();
 
+	void reloadMag();
+	bool checkMag();
+
 public:
 	static const int MOVE_SPEED = 135;
+	static const int HAND_MAG = 10;
+	static const int RIFLE_MAG = 30;
+	static const int SHOT_MAG = 6;
 
 	void reset();
 	void animationsReset();
@@ -56,7 +66,7 @@ public:
 	void setPosition(Vector2f newPosition);
 
 	void reload();
-	void shoot();
+	bool shoot();
 
 	void rotate(float angle);
 	void moveUp();
@@ -73,6 +83,7 @@ public:
 	void stateUpdate(Time dtTime);
 
 	void setWeapon(WeaponTypes newWeapon);
+	Soldier::WeaponTypes getWeapon() const;
 	void setVertical(float value);
 	void setHorizontal(float value);
 	float getVertical();

@@ -5,7 +5,7 @@ using namespace sf;
 class Bullet
 {
 private:
-	static const int SPEED = 2000;
+	static const int SPEED = 3800;
 
 	FloatRect bulletBody;
 	RectangleShape shape;

@@ -43,6 +43,9 @@ void Soldier::reset()
 	equipedWeapon = WeaponTypes::HANDGUN;
 	shootTime = reloadingTime = Time::Zero;
 	this->animationsReset();
+	currHandMag = Soldier::HAND_MAG;
+	currRifleMag = Soldier::RIFLE_MAG;
+	currShotMag = Soldier::SHOT_MAG;
 }
 
 void Soldier::animationsReset()
@@ -60,6 +63,11 @@ void Soldier::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(sprite, states);
 	target.draw(rect, states);
+}
+
+Soldier::WeaponTypes Soldier::getWeapon() const
+{
+	return equipedWeapon;
 }
 
 void Soldier::setWeapon(WeaponTypes newWeapon)
@@ -144,12 +152,30 @@ bool Soldier::shootAvailable()
 	return canShoot;
 }
 
-void Soldier::shoot()
+bool Soldier::checkMag()
 {
+	switch (equipedWeapon)
+	{
+	case WeaponTypes::HANDGUN:
+		return (bool)currHandMag;
+		break;
+	case WeaponTypes::RIFLE:
+		return (bool)currRifleMag;
+		break;
+	case WeaponTypes::SHOTGUN:
+		return (bool)currShotMag;
+		break; 
+	}
+}
+
+bool Soldier::shoot()
+{
+	if (!this->checkMag()) return false;
 	currentState = PlayerState::SHOOT;
 	shootTime = Time::Zero;
 	this->animationsReset();
 	canShoot = false;
+	return true;
 }
 
 void Soldier::reload()
@@ -157,6 +183,22 @@ void Soldier::reload()
 	currentState = PlayerState::RELOAD;
 	this->animationsReset();
 	reloadingTime = Time::Zero;
+}
+
+void Soldier::reloadMag()
+{
+	switch (equipedWeapon)
+	{
+	case WeaponTypes::HANDGUN:
+		currHandMag = Soldier::HAND_MAG;
+		break;
+	case WeaponTypes::RIFLE:
+		currRifleMag = Soldier::RIFLE_MAG;
+		break;
+	case WeaponTypes::SHOTGUN:
+		currShotMag = Soldier::SHOT_MAG;
+		break;
+	}
 }
 
 void Soldier::animationUpdate(Time dtTime)
@@ -198,13 +240,26 @@ void Soldier::stateUpdate(Time dtTime)
 	{
 		currentState = PlayerState::IDLE;
 		canShoot = true;
-		animationsReset();
+		this->animationsReset();
+		this->reloadMag();
 	}
 	else if (shootTime.asSeconds() >= SHOOT_DURATION && currentState == PlayerState::SHOOT)
 	{
 		currentState = PlayerState::IDLE;
 		canShoot = true;
-		animationsReset();
+		this->animationsReset();
+		switch (equipedWeapon)
+		{
+		case WeaponTypes::HANDGUN:
+			currHandMag--;
+			break;
+		case WeaponTypes::RIFLE:
+			currRifleMag--;
+			break;
+		case WeaponTypes::SHOTGUN:
+			currShotMag--;
+			break;
+		}
 	}
 
 	if (currentState != RELOAD && currentState != SHOOT)

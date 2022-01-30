@@ -27,6 +27,7 @@ void Engine::input()
 
 	static bool keyOnHold[10] = { false };
 	static bool escOnHold = false;
+	static bool leftMouseOnHold = false;
 
 	// èudly
 	switch (currentState)
@@ -54,14 +55,25 @@ void Engine::input()
 		}
 
 		// støelba
-		if (Mouse::isButtonPressed(Mouse::Button::Left) 
+		if (Mouse::isButtonPressed(Mouse::Button::Left)
 			&& player.getState() != Soldier::PlayerState::RELOAD && player.shootAvailable())
 		{
-			player.shoot();
-			Vector2i mousePosition = Mouse::getPosition(window);
-			Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
-			bullets.push_back(Bullet(player.getCenter(), mouseWorldPos));
+			// RILFE je automatická zbraò, ostatní jsou poloautomaty
+			if (!leftMouseOnHold || player.getWeapon() == Soldier::WeaponTypes::RIFLE)
+			{
+				if (player.shoot())
+				{
+					Vector2i mousePosition = Mouse::getPosition(window);
+					Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
+					bullets.push_back(Bullet(player.getCenter(), mouseWorldPos));
+				}
+			}
 		}
+		// jestli je myš držena
+		if (Mouse::isButtonPressed(Mouse::Button::Left))
+			leftMouseOnHold = true;
+		else
+			leftMouseOnHold = false;
 
 		// pøepínání zbraní
 		if (pressed(key::Num1))
