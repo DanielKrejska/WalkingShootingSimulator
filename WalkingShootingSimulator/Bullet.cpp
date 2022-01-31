@@ -1,16 +1,13 @@
 #include "Bullet.h"
 
-#include <iostream>
-using namespace std;
-
 Bullet::Bullet(Vector2f start, Vector2f target)
 {
-	bulletBody.width = bulletBody.height = 2;
+	bulletBody.width = bulletBody.height = 4;
 	position = start;
 	targetPosition = target;
 
-	shape.setSize(Vector2f(2, 2));
-	shape.setOutlineThickness(3);
+	shape.setSize(Vector2f(bulletBody.width, bulletBody.height));
+	shape.setOutlineThickness(2);
 	shape.setOutlineColor(Color::Red);
 
 	bulletBody.left = start.x;

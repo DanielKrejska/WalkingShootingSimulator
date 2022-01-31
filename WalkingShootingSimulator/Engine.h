@@ -5,6 +5,7 @@
 #include "LevelManager.h"
 #include "Soldier.h"
 #define PI 3.14159265
+#define HUD_UPDATE_TIME seconds(1.f)
 
 
 // NA TESTOVÁNÍ
@@ -34,17 +35,20 @@ private:
 	Time sinceHUDUpdate;
 	Text levelPickText;
 	Text menuText;
+	Text ammoText;
 
+	Sprite cursorSprite;
 	Sprite bgSprite;
 	// uložení textur
 	Texture bgTexture;
 	Texture floorTexture;
 
 	// správa
+	Vector2f mouseWorldPosition;
 	Vector2f scaleToFullHD;
 	LevelManager levelManager;
 
-	void rotatePlayer(const Vector2f& mousePosition);
+	void rotatePlayer();
 	// herní objekty
 	Soldier player;
 	vector<Bullet> bullets;

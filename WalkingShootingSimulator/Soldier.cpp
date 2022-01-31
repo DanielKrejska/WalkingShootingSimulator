@@ -5,8 +5,6 @@
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)
 #define RECT_SCALE 0.48f
 
-#include <iostream>
-using namespace std;
 
 Soldier::Soldier() : GameObject(0, 0)
 {
@@ -62,7 +60,7 @@ void Soldier::animationsReset()
 void Soldier::draw(RenderTarget& target, RenderStates states) const
 {
 	target.draw(sprite, states);
-	target.draw(rect, states);
+	//target.draw(rect, states);
 }
 
 Soldier::WeaponTypes Soldier::getWeapon() const
@@ -152,18 +150,18 @@ bool Soldier::shootAvailable()
 	return canShoot;
 }
 
-bool Soldier::checkMag()
+int Soldier::checkMag()
 {
 	switch (equipedWeapon)
 	{
 	case WeaponTypes::HANDGUN:
-		return (bool)currHandMag;
+		return currHandMag;
 		break;
 	case WeaponTypes::RIFLE:
-		return (bool)currRifleMag;
+		return currRifleMag;
 		break;
 	case WeaponTypes::SHOTGUN:
-		return (bool)currShotMag;
+		return currShotMag;
 		break; 
 	}
 }

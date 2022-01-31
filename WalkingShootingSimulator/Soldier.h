@@ -51,7 +51,6 @@ private:
 	void setRectPosition();
 
 	void reloadMag();
-	bool checkMag();
 
 public:
 	static const int MOVE_SPEED = 135;
@@ -92,6 +91,7 @@ public:
 	Vector2f getCenter();
 	int getState();
 	bool shootAvailable();
+	int checkMag();
 
 	Soldier();
 	~Soldier();

@@ -2,11 +2,13 @@
 #include "Engine.h"
 #include "TextureHolder.h"
 
+#define crosshaire_scale Vector2f(0.04f, 0.04f)
+
 Engine::Engine()
 {
 	window.create(VideoMode(1280, 720), "Walking Shooting Simulator");
 	view.setSize(window.getSize().x, window.getSize().y);
-	window.setFramerateLimit(100);
+	window.setFramerateLimit(120);
 	currentState = GameState::MENU;
 	font.loadFromFile("fonts/Roboto.ttf");
 	fpsText.setFont(font);
@@ -21,12 +23,21 @@ Engine::Engine()
 	menuText.setCharacterSize(75);
 	menuText.setFillColor(Color::Green);
 	menuText.setString("1) play\n0) exit");
+	ammoText.setFont(font);
+	ammoText.setCharacterSize(15);
+	ammoText.setFillColor(Color::Yellow);
+	ammoText.setStyle(Text::Bold);
 	floorTexture = TextureHolder::getTexture("graphics/background_sheet.png");
 	bgTexture = TextureHolder::getTexture("graphics/bg.jpg");
 	bgSprite.setTexture(bgTexture);
+	window.setMouseCursorVisible(false);
+	cursorSprite.setTexture(TextureHolder::getTexture("graphics/crosshair.png"));
+	cursorSprite.setScale(crosshaire_scale);
 	// aù objekty skoËÌ na svoje mÌsto
 	viewSet();
 	hudResizeUpdate();
+	Vector2i mousePosition = Mouse::getPosition(window);
+	mouseWorldPosition = window.mapPixelToCoords(mousePosition);
 }
 
 Engine::~Engine()
@@ -47,7 +58,9 @@ void Engine::run()
 	while (window.isOpen())
 	{
 		deltaTime = frameClock.restart();
-		
+		Vector2i mousePosition = Mouse::getPosition(window);
+		mouseWorldPosition = window.mapPixelToCoords(mousePosition);
+
 		input();
 		update(deltaTime);
 		draw();
@@ -59,8 +72,8 @@ void Engine::hudResizeUpdate()
 {
 	view.setSize(window.getSize().x, window.getSize().y);
 	// pozadÌ je ve fullhd a j· to cel˝ programuju na 1080p monitoru
-	scaleToFullHD.x = view.getSize().x / 1920;
-	scaleToFullHD.y = view.getSize().y / 1080;
+	scaleToFullHD.x = view.getSize().x / 1920.f;
+	scaleToFullHD.y = view.getSize().y / 1080.f;
 	bgSprite.setScale(scaleToFullHD);
 
 	menuText.setPosition(window.getSize().x / 2 - menuText.getGlobalBounds().width / 2,
@@ -79,6 +92,9 @@ void Engine::hudPositionUpdate()
 		(float)view.getSize().x, (float)view.getSize().y);
 
 	fpsText.setPosition(viewRect.left + 2, viewRect.top + 2);
+	ammoText.setPosition(
+		mouseWorldPosition.x - (ammoText.getGlobalBounds().width / 2),
+		mouseWorldPosition.y + (cursorSprite.getGlobalBounds().height / 2) + 2);
 }
 
 
@@ -93,10 +109,10 @@ void Engine::viewSet()
 	hudPositionUpdate();
 }
 
-void Engine::rotatePlayer(const Vector2f& mousePosition)
+void Engine::rotatePlayer()
 {
-	float dtX = mousePosition.x - player.getCenter().x;
-	float dtY = mousePosition.y - player.getCenter().y;
+	float dtX = mouseWorldPosition.x - player.getCenter().x;
+	float dtY = mouseWorldPosition.y - player.getCenter().y;
 	float rotation = atan2(dtY, dtX);
 	rotation = rotation * (180.f / PI);
 	player.rotate(rotation);

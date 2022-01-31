@@ -1,7 +1,6 @@
 #pragma warning(disable : 4244)
 #pragma warning(disable : 26812)
 #include "Engine.h"
-#include <cassert>
 
 typedef Keyboard::Key key;
 
@@ -63,9 +62,7 @@ void Engine::input()
 			{
 				if (player.shoot())
 				{
-					Vector2i mousePosition = Mouse::getPosition(window);
-					Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
-					bullets.push_back(Bullet(player.getCenter(), mouseWorldPos));
+					bullets.push_back(Bullet(player.getCenter(), mouseWorldPosition));
 				}
 			}
 		}

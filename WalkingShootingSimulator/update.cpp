@@ -8,34 +8,45 @@ void Engine::update(Time deltaTime)
 	switch (currentState)
 	{
 	case GameState::PLAYING:
-		{
+	{
 		Vector2f nextPosition(player.calculateNextPosition(deltaTime));
 		this->wallCollisions(nextPosition);
 		player.executeMovement(nextPosition);
-		Vector2i mousePosition = Mouse::getPosition(window);
-		Vector2f mouseWorldPos = window.mapPixelToCoords(mousePosition);
-		this->rotatePlayer(mouseWorldPos);
+		this->rotatePlayer();
 		player.animationUpdate(deltaTime);
 		player.stateUpdate(deltaTime);
 		for (Bullet& b : bullets)
 			b.update(deltaTime);
 		break;
-		}
+	}
 
 	case GameState::EXIT:
 		window.close();
 		break;
 	}
 
+	cursorSprite.setPosition(
+		mouseWorldPosition.x - (cursorSprite.getGlobalBounds().width / 2),
+		mouseWorldPosition.y - (cursorSprite.getGlobalBounds().height / 2));
+
 	viewSet();
 	// aby se nám HUD neaktualizoval každej frame
 	// postaèí to jednou za sekundu
 	sinceHUDUpdate += deltaTime;
-	if (sinceHUDUpdate > seconds(1))
+	if (sinceHUDUpdate >= HUD_UPDATE_TIME)
 	{
 		std::stringstream ssfps;
-		ssfps << int (1 / deltaTime.asSeconds());
+		ssfps << int(1 / deltaTime.asSeconds());
 		fpsText.setString(ssfps.str());
 		sinceHUDUpdate = Time::Zero;
 	}
+	// s ukazetelem munice je to jiná písnièka, ten musí být pøesný
+	static int lastAmmo = 0;
+	if (lastAmmo != player.checkMag())
+	{
+		stringstream ssAmmo;
+		ssAmmo << player.checkMag();
+		ammoText.setString(ssAmmo.str());
+	}
+	lastAmmo = player.checkMag();
 }
