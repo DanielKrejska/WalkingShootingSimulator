@@ -1,3 +1,2 @@
-﻿  Soldier.cpp
-D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\WalkingShootingSimulator\Soldier.cpp(167): warning C4715: Soldier::checkMag: ne všechny cesty k ovládacím prvkům vrací hodnotu
+﻿  Engine.cpp
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe

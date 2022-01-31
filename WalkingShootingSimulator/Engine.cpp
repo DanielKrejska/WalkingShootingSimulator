@@ -24,9 +24,9 @@ Engine::Engine()
 	menuText.setFillColor(Color::Green);
 	menuText.setString("1) play\n0) exit");
 	ammoText.setFont(font);
-	ammoText.setCharacterSize(15);
+	ammoText.setCharacterSize(18);
 	ammoText.setFillColor(Color::Yellow);
-	ammoText.setStyle(Text::Bold);
+	//ammoText.setStyle(Text::Bold);
 	floorTexture = TextureHolder::getTexture("graphics/background_sheet.png");
 	bgTexture = TextureHolder::getTexture("graphics/bg.jpg");
 	bgSprite.setTexture(bgTexture);
