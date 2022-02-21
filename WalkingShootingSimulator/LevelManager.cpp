@@ -45,12 +45,12 @@ void LevelManager::deleteCurrentMap()
 	}
 }
 
-bool LevelManager::loadMap(int mapIndex, Soldier& player)
+bool LevelManager::loadMap(int mapIndex, Soldier& player, vector<Target>& targets)
 {
 	if (mapIndex >= mapsNum) return false;
 	this->deleteCurrentMap();
 	technicalInit(mapIndex);
-	graphicalInit(player);
+	graphicalInit(player, targets);
 	return true;
 }
 

@@ -22,6 +22,10 @@ void Engine::draw()
 		{
 			window.draw(b.getShape());
 		}
+		for (Target& t : targets)
+		{
+			window.draw(t);
+		}
 		window.draw(player);
 		window.draw(ammoText);
 		break;

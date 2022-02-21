@@ -1,5 +1,6 @@
 #pragma warning(disable : 26812)
 #pragma warning(disable : 4244)
+#pragma warning(disable : 4715)
 #include "Soldier.h"
 #include "TextureHolder.h"
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)

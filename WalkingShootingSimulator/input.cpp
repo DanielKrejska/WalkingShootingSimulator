@@ -94,6 +94,7 @@ void Engine::input()
 			menuText.setString("1) play\n0) exit");
 			player.reset();
 			bullets.clear();
+			targets.clear();
 		}
 		else keyOnHold[0] = false;
 		break;
@@ -128,7 +129,7 @@ void Engine::input()
 			{
 				if (!keyOnHold[holdIndex])
 				{
-					if (levelManager.loadMap(holdIndex - 1, player))
+					if (levelManager.loadMap(holdIndex - 1, player, targets))
 						currentState = GameState::PLAYING;
 				}
 			}

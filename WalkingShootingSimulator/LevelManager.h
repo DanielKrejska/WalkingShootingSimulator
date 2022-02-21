@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Soldier.h"
+#include "Target.h"
 using namespace std;
 using namespace sf;
 
@@ -24,7 +25,7 @@ private:
 
 	void deleteCurrentMap();
 	void technicalInit(int mapIndex);
-	void graphicalInit(Soldier& player);
+	void graphicalInit(Soldier& player, vector<Target>& targets);
 
 public:
 	LevelManager();
@@ -32,7 +33,7 @@ public:
 	static const int TILE_SIZE = 50;
 	static const int MAX_MAP_NUM = 9;
 
-	bool loadMap(int mapIndex, Soldier& player);
+	bool loadMap(int mapIndex, Soldier& player, vector<Target>& targets);
 
 	const VertexArray* getVertexMap();
 	const string& getMenuString();

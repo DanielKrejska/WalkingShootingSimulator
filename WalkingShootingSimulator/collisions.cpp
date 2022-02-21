@@ -28,16 +28,45 @@ void Engine::wallCollisions(Vector2f& playerNextPosition)
 			}
 		}
 		
+		// náboje
 		auto it = bullets.begin();
-
 		while (it != bullets.end())
 		{
-			if (it->getRect().intersects(twr)) {
+			// zeï
+			if (it->getRect().intersects(twr))
+			{
 				it = bullets.erase(it);
 			}
-			else {
+			else
+			{
 				++it;
+				break;
 			}
+		}
+	}
+
+	//cout << targets.size() << "\t" << bullets.size() << endl;
+	bool didCollide = false;
+	auto bit = bullets.begin();
+	while (bit != bullets.end())
+	{
+		for (auto tit = targets.begin(); tit != targets.end(); tit++)
+		{
+			if (bit->getRect().intersects(tit->getColliderRect()))
+			{
+				tit->takeDamage(1);
+				didCollide = true;
+				break;
+			}
+		}
+		if (didCollide)
+		{
+			bit = bullets.erase(bit);
+			didCollide = false;
+		}
+		else
+		{
+			bit++;
 		}
 	}
 }

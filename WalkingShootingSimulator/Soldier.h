@@ -39,7 +39,7 @@ private:
 	PlayerState currentState;
 	WeaponTypes equipedWeapon;
 	RectangleShape rect;
-	Sprite sprite;
+	//Sprite sprite;
 
 	Animation anims[RIFLE+1][RELOAD+1];
 

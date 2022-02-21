@@ -166,6 +166,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="loadMapFuncs.cpp" />
     <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="Target.cpp" />
     <ClCompile Include="TextureHolder.cpp" />
     <ClCompile Include="update.cpp" />
   </ItemGroup>
@@ -176,6 +177,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Soldier.h" />
+    <ClInclude Include="Target.h" />
     <ClInclude Include="TextureHolder.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

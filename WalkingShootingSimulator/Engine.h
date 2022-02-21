@@ -52,6 +52,7 @@ private:
 	// herní objekty
 	Soldier player;
 	vector<Bullet> bullets;
+	vector<Target> targets;
 
 	/*
 	* Funkce pro Vnitøní použití

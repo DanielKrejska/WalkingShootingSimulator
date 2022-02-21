@@ -17,6 +17,14 @@ void Engine::update(Time deltaTime)
 		player.stateUpdate(deltaTime);
 		for (Bullet& b : bullets)
 			b.update(deltaTime);
+		auto tit = targets.begin();
+		while (tit != targets.end())
+		{
+			if (tit->isDestroyed())
+				tit = targets.erase(tit);
+			else
+				tit++;
+		}
 		break;
 	}
 

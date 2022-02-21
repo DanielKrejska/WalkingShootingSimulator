@@ -48,7 +48,7 @@ void LevelManager::technicalInit(int mapIndex)
 }
 
 
-void LevelManager::graphicalInit(Soldier& player)
+void LevelManager::graphicalInit(Soldier& player, vector<Target>& targets)
 {
 	pVertexMap = new VertexArray();
 	pVertexMap->setPrimitiveType(Quads);
@@ -65,7 +65,7 @@ void LevelManager::graphicalInit(Soldier& player)
 			// pøiøazení pozice bodù v mapì
 			va[currentVertex + 0].position = Vector2f(w * TILE_SIZE,
 				h * TILE_SIZE);
-			va[currentVertex + 1].position = Vector2f((w * TILE_SIZE) + TILE_SIZE, 
+			va[currentVertex + 1].position = Vector2f((w * TILE_SIZE) + TILE_SIZE,
 				h * TILE_SIZE);
 			va[currentVertex + 2].position = Vector2f((w * TILE_SIZE) + TILE_SIZE,
 				(h * TILE_SIZE) + TILE_SIZE);
@@ -114,6 +114,10 @@ void LevelManager::graphicalInit(Soldier& player)
 			if (arrayMap[h][w] == 'P')
 			{
 				player.setPosition(objectPosition);
+			}
+			else if (arrayMap[h][w] == 'T')
+			{
+				targets.push_back(Target(objectPosition));
 			}
 		}
 	}
