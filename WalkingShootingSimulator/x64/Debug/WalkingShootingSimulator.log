@@ -1,2 +1,16 @@
-﻿  Target.cpp
+﻿  Animation.cpp
+  Bullet.cpp
+  collisions.cpp
+  draw.cpp
+  Engine.cpp
+  GameObject.cpp
+  input.cpp
+  LevelManager.cpp
+  main.cpp
+  loadMapFuncs.cpp
+  Soldier.cpp
+  Target.cpp
+  TextureHolder.cpp
+  update.cpp
+  Generování kódu...
   WalkingShootingSimulator.vcxproj -> D:\IT\MATURITNI_PRACE\WalkingShootingSimulator\x64\Debug\WalkingShootingSimulator.exe
