@@ -90,6 +90,7 @@ public:
 	const RectangleShape& getRect() const;
 	Vector2f getCenter();
 	int getState();
+	bool isWalking() const;
 	bool shootAvailable();
 	int checkMag();
 

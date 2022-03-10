@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include "LevelManager.h"
 #include "Soldier.h"
+#include "SoundManager.h"
 #define PI 3.14159265
 #define HUD_UPDATE_TIME seconds(1.f)
 
@@ -47,6 +48,7 @@ private:
 	Vector2f mouseWorldPosition;
 	Vector2f scaleToFullHD;
 	LevelManager levelManager;
+	SoundManager soundManager;
 
 	void rotatePlayer();
 	// herní objekty

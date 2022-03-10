@@ -37,6 +37,7 @@ void Engine::input()
 			currentState = GameState::PAUSE;
 			escOnHold = true;
 			menuText.setString("1) resume\n0) menu");
+			soundManager.playWalk(false);
 		}
 		else
 		{
@@ -51,6 +52,7 @@ void Engine::input()
 		if (pressed(key::R) && player.getState() != Soldier::PlayerState::RELOAD)
 		{
 			player.reload();
+			soundManager.playReload();
 		}
 
 		// støelba
@@ -63,6 +65,7 @@ void Engine::input()
 				if (player.shoot())
 				{
 					bullets.push_back(Bullet(player.getCenter(), mouseWorldPosition));
+					soundManager.playShoot();
 				}
 			}
 		}

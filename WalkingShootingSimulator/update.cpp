@@ -11,6 +11,7 @@ void Engine::update(Time deltaTime)
 	{
 		Vector2f nextPosition(player.calculateNextPosition(deltaTime));
 		this->wallCollisions(nextPosition);
+		soundManager.playWalk(player.isWalking());	
 		player.executeMovement(nextPosition);
 		this->rotatePlayer();
 		player.animationUpdate(deltaTime);

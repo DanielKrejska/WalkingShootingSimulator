@@ -36,6 +36,7 @@ void Engine::wallCollisions(Vector2f& playerNextPosition)
 			if (it->getRect().intersects(twr))
 			{
 				it = bullets.erase(it);
+				soundManager.playWallHit();
 			}
 			else
 			{
@@ -56,6 +57,7 @@ void Engine::wallCollisions(Vector2f& playerNextPosition)
 			{
 				tit->takeDamage(1);
 				didCollide = true;
+				soundManager.playTargetHit();
 				break;
 			}
 		}

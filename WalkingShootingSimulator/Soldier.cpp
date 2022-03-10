@@ -6,6 +6,8 @@
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)
 #define RECT_SCALE 0.48f
 
+#include <iostream>
+using namespace std;
 
 Soldier::Soldier() : GameObject(0, 0)
 {
@@ -141,6 +143,12 @@ void Soldier::rotate(float angle)
 	sprite.setRotation(angle);
 }
 
+bool Soldier::isWalking() const
+{
+	bool isWalking = horizontalMove != 0.f || verticalMove != 0.f;
+	return isWalking;
+}
+
 int Soldier::getState()
 {
 	return currentState;
@@ -261,6 +269,7 @@ void Soldier::stateUpdate(Time dtTime)
 		}
 	}
 
+	// nastavení statusu
 	if (currentState != RELOAD && currentState != SHOOT)
 	{
 		if (oldPosition != position)
@@ -273,7 +282,7 @@ void Soldier::stateUpdate(Time dtTime)
 		}
 	}
 
-	// pøebíjení je v prùbìhu
+	// reakce na stav
 	if (currentState == PlayerState::RELOAD)
 	{
 		reloadingTime += dtTime;
