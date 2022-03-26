@@ -28,13 +28,14 @@ void Engine::draw()
 		}
 		window.draw(player);
 		window.draw(ammoText);
+		window.draw(cursorSprite);
 		break;
 	case GameState::PAUSE:
 		window.draw(*levelManager.getVertexMap(), &floorTexture);
 		window.draw(menuText);
 		break;
 	}
-	window.draw(cursorSprite);
+	
 	window.draw(fpsText);
 	window.display();
 }
