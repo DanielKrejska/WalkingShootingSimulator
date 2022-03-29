@@ -1,6 +1,7 @@
 #pragma warning(disable : 4244)
 #include "Engine.h"
 #include <sstream>
+#include <filesystem>
 
 void Engine::update(Time deltaTime)
 {
@@ -9,6 +10,7 @@ void Engine::update(Time deltaTime)
 	{
 	case GameState::PLAYING:
 	{
+		levelTime += deltaTime;
 		Vector2f nextPosition(player.calculateNextPosition(deltaTime));
 		this->wallCollisions(nextPosition);
 		soundManager.playWalk(player.isWalking());	
@@ -25,6 +27,19 @@ void Engine::update(Time deltaTime)
 				tit = targets.erase(tit);
 			else
 				tit++;
+		}
+		// kontrola konce hry
+		if (targets.size() <= 0)
+		{
+			levelFinished = true;
+			stringstream s;
+			s << "ALL TARGETS DESTROYED\n" << fixed << setprecision(2) 
+				<< levelTime.asSeconds() << " seconds\n\n0) menu";
+			menuText.setString(s.str());
+			currentState = GameState::PAUSE;
+			hudResizeUpdate();
+			soundManager.playWalk(false);
+			window.setMouseCursorVisible(true);
 		}
 		break;
 	}

@@ -5,8 +5,8 @@
 #include "LevelManager.h"
 #include "Soldier.h"
 #include "SoundManager.h"
-#define PI 3.14159265
 #define HUD_UPDATE_TIME seconds(1.f)
+#define PI 3.14159265
 
 
 // NA TESTOVÁNÍ
@@ -27,7 +27,8 @@ private:
 		LEVEL_PICK, // spustit hru -> výbìr levelu
 		PLAYING, // bìží hra
 		PAUSE, // pozastavená hra -> menu nebo pokraèování hry
-		EXIT // ukonèení programu
+		EXIT, // ukonèení programu
+		INFO
 	};
 	
 	GameState currentState;
@@ -37,6 +38,8 @@ private:
 	Text levelPickText;
 	Text menuText;
 	Text ammoText;
+	Text infoText;
+	RectangleShape infoBG;
 
 	Sprite cursorSprite;
 	Sprite bgSprite;
@@ -49,6 +52,8 @@ private:
 	Vector2f scaleToFullHD;
 	LevelManager levelManager;
 	SoundManager soundManager;
+	Time levelTime;
+	bool levelFinished;
 
 	void rotatePlayer();
 	// herní objekty

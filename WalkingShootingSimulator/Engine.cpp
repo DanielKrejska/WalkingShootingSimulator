@@ -22,15 +22,29 @@ Engine::Engine()
 	menuText.setFont(font);
 	menuText.setCharacterSize(75);
 	menuText.setFillColor(Color::Green);
-	menuText.setString("1) play\n0) exit");
+	menuText.setString("1) play\n2) info\n0) exit");
+	infoText.setFont(font);
+	infoText.setFillColor(Color::Black);
+	infoText.setString("Controls\n"
+						"----------------\n"
+						"W/A/S/D -> move\n"
+						"left mouse button -> shoot\n"
+						"R -> reload\n"
+						"Esc -> pause\n"
+						"----------------\n\n"
+						"0) back");
+	Vector2f infosize(infoText.getGlobalBounds().width + 20,
+		infoText.getGlobalBounds().height + 20);
+	infoBG.setSize(infosize);
+	infoBG.setFillColor(Color(198, 190, 200));
 	ammoText.setFont(font);
+
 	ammoText.setCharacterSize(18);
 	ammoText.setFillColor(Color::Yellow);
 	//ammoText.setStyle(Text::Bold);
 	floorTexture = TextureHolder::getTexture("graphics/background_sheet.png");
 	bgTexture = TextureHolder::getTexture("graphics/bg.jpg");
 	bgSprite.setTexture(bgTexture);
-	window.setMouseCursorVisible(false);
 	cursorSprite.setTexture(TextureHolder::getTexture("graphics/crosshair.png"));
 	cursorSprite.setScale(crosshaire_scale);
 	// aù objekty skoËÌ na svoje mÌsto
@@ -82,6 +96,13 @@ void Engine::hudResizeUpdate()
 	levelPickText.setPosition(window.getSize().x / 2 - levelPickText.getGlobalBounds().width / 2,
 		window.getSize().y / 2- levelPickText.getGlobalBounds().height / 2);
 
+	// info str·nka a jejÌ pozadÌ (ten obdÈlnÌk)
+	auto vs = view.getSize();
+
+	infoBG.setPosition(vs.x / 2 - infoBG.getSize().x / 2,
+		vs.y / 2 - infoBG.getSize().y / 2);
+	infoText.setPosition(vs.x / 2 - infoText.getGlobalBounds().width / 2,
+		vs.y / 2 - infoText.getGlobalBounds().height / 2 - 5);
 }
 
 // objekty, co se musÌ drûet View

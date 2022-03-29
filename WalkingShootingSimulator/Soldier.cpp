@@ -3,6 +3,7 @@
 #pragma warning(disable : 4715)
 #include "Soldier.h"
 #include "TextureHolder.h"
+#include <math.h>
 #define SOLDIER_SCALE Vector2f(0.6f, 0.6f)
 #define RECT_SCALE 0.48f
 
@@ -121,7 +122,7 @@ Vector2f Soldier::getOldPosition()
 	return oldPosition;
 }
 
-Vector2f Soldier::getCenter()
+Vector2f Soldier::getCenter() const
 {
 	auto rp = rect.getGlobalBounds();
 	return Vector2f(rp.left + (rp.width / 2),

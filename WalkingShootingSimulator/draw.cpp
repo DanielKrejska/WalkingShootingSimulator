@@ -34,6 +34,11 @@ void Engine::draw()
 		window.draw(*levelManager.getVertexMap(), &floorTexture);
 		window.draw(menuText);
 		break;
+	case GameState::INFO:
+		window.draw(bgSprite);
+		window.draw(infoBG);
+		window.draw(infoText);
+		break;
 	}
 	
 	window.draw(fpsText);

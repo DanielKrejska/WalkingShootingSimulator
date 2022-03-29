@@ -34,10 +34,11 @@ void Engine::input()
 	case GameState::PLAYING:
 		if (pressed(key::Escape) && !escOnHold)
 		{
+			window.setMouseCursorVisible(true);
+			soundManager.playWalk(false);
 			currentState = GameState::PAUSE;
 			escOnHold = true;
 			menuText.setString("1) resume\n0) menu");
-			soundManager.playWalk(false);
 		}
 		else
 		{
@@ -85,7 +86,11 @@ void Engine::input()
 	case GameState::PAUSE:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
 		{
-			if (!keyOnHold[1]) { currentState = GameState::PLAYING; }
+			if (!keyOnHold[1] && !levelFinished) 
+			{ 
+				currentState = GameState::PLAYING;
+				window.setMouseCursorVisible(false);
+			}
 			keyOnHold[1] = true;
 		}
 		else keyOnHold[1] = false;
@@ -94,13 +99,26 @@ void Engine::input()
 		{
 			if (!keyOnHold[0]) currentState = GameState::MENU;
 			keyOnHold[0] = true;
-			menuText.setString("1) play\n0) exit");
+			menuText.setString("1) play\n2) info\n0) exit");
+			hudResizeUpdate();
 			player.reset();
 			bullets.clear();
 			targets.clear();
 		}
 		else keyOnHold[0] = false;
 		break;
+
+	case GameState::INFO:
+		if (pressed(key::Num0) || pressed(key::Numpad0))
+		{
+			if (!keyOnHold[0])
+				currentState = GameState::MENU;
+			keyOnHold[0] = true;
+		}
+		else
+			keyOnHold[0] = false;
+		break;
+
 	case GameState::MENU:
 		if (pressed(key::Num1) || pressed(key::Numpad1))
 		{
@@ -108,6 +126,13 @@ void Engine::input()
 			keyOnHold[1] = true;
 		}
 		else keyOnHold[1] = false;
+
+		if (pressed(key::Num2) || pressed(key::Numpad2))
+		{
+			keyOnHold[2] = true;
+			currentState = GameState::INFO;
+		}
+		else keyOnHold[2] = false;
 
 		if (pressed(key::Num0) || pressed(key::Numpad0))
 		{
@@ -133,7 +158,12 @@ void Engine::input()
 				if (!keyOnHold[holdIndex])
 				{
 					if (levelManager.loadMap(holdIndex - 1, player, targets))
+					{
 						currentState = GameState::PLAYING;
+						levelTime = Time::Zero;
+						levelFinished = false;
+						window.setMouseCursorVisible(false);
+					}
 				}
 			}
 			else
