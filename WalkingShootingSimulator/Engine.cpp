@@ -31,6 +31,8 @@ Engine::Engine()
 						"left mouse button -> shoot\n"
 						"R -> reload\n"
 						"Esc -> pause\n"
+						"1 -> use pistol\n"
+						"2 -> use rifle\n"
 						"----------------\n\n"
 						"0) back");
 	Vector2f infosize(infoText.getGlobalBounds().width + 20,
