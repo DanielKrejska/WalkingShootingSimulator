@@ -47,7 +47,6 @@ void Soldier::reset()
 	this->animationsReset();
 	currHandMag = Soldier::HAND_MAG;
 	currRifleMag = Soldier::RIFLE_MAG;
-	currShotMag = Soldier::SHOT_MAG;
 }
 
 void Soldier::animationsReset()
@@ -170,9 +169,6 @@ int Soldier::checkMag()
 	case WeaponTypes::RIFLE:
 		return currRifleMag;
 		break;
-	case WeaponTypes::SHOTGUN:
-		return currShotMag;
-		break; 
 	}
 }
 
@@ -195,18 +191,10 @@ void Soldier::reload()
 
 void Soldier::reloadMag()
 {
-	switch (equipedWeapon)
-	{
-	case WeaponTypes::HANDGUN:
+	if (equipedWeapon == WeaponTypes::HANDGUN)
 		currHandMag = Soldier::HAND_MAG;
-		break;
-	case WeaponTypes::RIFLE:
+	else
 		currRifleMag = Soldier::RIFLE_MAG;
-		break;
-	case WeaponTypes::SHOTGUN:
-		currShotMag = Soldier::SHOT_MAG;
-		break;
-	}
 }
 
 void Soldier::animationUpdate(Time dtTime)
@@ -244,30 +232,24 @@ void Soldier::animationUpdate(Time dtTime)
 void Soldier::stateUpdate(Time dtTime)
 {
 	// ukonèení výstøelu a pøebíjení
-	if (reloadingTime.asSeconds() >= RELOAD_DURATION && currentState == PlayerState::RELOAD)
+	if (reloadingTime.asSeconds() >= RELOAD_DURATION &&
+		currentState == PlayerState::RELOAD)
 	{
 		currentState = PlayerState::IDLE;
 		canShoot = true;
 		this->animationsReset();
 		this->reloadMag();
 	}
-	else if (shootTime.asSeconds() >= SHOOT_DURATION && currentState == PlayerState::SHOOT)
+	else if (shootTime.asSeconds() >= SHOOT_DURATION &&
+		currentState == PlayerState::SHOOT)
 	{
 		currentState = PlayerState::IDLE;
 		canShoot = true;
 		this->animationsReset();
-		switch (equipedWeapon)
-		{
-		case WeaponTypes::HANDGUN:
+		if (equipedWeapon == WeaponTypes::HANDGUN)
 			currHandMag--;
-			break;
-		case WeaponTypes::RIFLE:
+		else 
 			currRifleMag--;
-			break;
-		case WeaponTypes::SHOTGUN:
-			currShotMag--;
-			break;
-		}
 	}
 
 	// nastavení statusu

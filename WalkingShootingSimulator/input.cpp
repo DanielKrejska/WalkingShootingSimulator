@@ -71,10 +71,7 @@ void Engine::input()
 			}
 		}
 		// jestli je myš držena
-		if (Mouse::isButtonPressed(Mouse::Button::Left))
-			leftMouseOnHold = true;
-		else
-			leftMouseOnHold = false;
+		leftMouseOnHold = Mouse::isButtonPressed(Mouse::Button::Left);
 
 		// pøepínání zbraní
 		if (pressed(key::Num1))

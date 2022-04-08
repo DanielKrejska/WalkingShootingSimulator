@@ -20,7 +20,6 @@ public:
 
 	enum WeaponTypes {
 		HANDGUN = 0,
-		SHOTGUN,
 		RIFLE
 	};
 
@@ -56,7 +55,6 @@ public:
 	static const int MOVE_SPEED = 135;
 	static const int HAND_MAG = 10;
 	static const int RIFLE_MAG = 30;
-	static const int SHOT_MAG = 6;
 
 	void reset();
 	void animationsReset();
