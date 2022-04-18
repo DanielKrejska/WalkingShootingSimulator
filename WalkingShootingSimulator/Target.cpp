@@ -2,6 +2,7 @@
 #include "TextureHolder.h"
 #define TARGET_SCALE Vector2f(0.15f, 0.15f)
 #define START_HP 5
+
 Target::Target(Vector2f position)
 {
 	hp = START_HP;
